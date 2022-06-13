@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -9,6 +10,8 @@ public class PlayerController : TouchPress
 
     [SerializeField] private bool canTurn;
     private int turnDirection = 1;
+
+    public Action<GameObject> OnDirectionChanged;
 
     protected override void Awake()
     {
@@ -42,6 +45,9 @@ public class PlayerController : TouchPress
 
     private void TurnCylinder()
     {
+        if (canTurn)
+            OnDirectionChanged?.Invoke(gameObject);
+
         if (!canTurn)
         {
             transform.DOKill(false);

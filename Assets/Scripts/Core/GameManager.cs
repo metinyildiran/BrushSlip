@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public int LastFinishedLevel { get; private set; }
 
+    private void OnGUI()
+    {
+        ((int)(1 / Time.smoothDeltaTime)).PrintScreen();
+    }
+
     private void Awake()
     {
         LoadData();

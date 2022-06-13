@@ -2,8 +2,8 @@
 using UnityEditor;
 #endif
 using UnityEngine;
-using UnityToolbarExtender;
 
+#if UNITY_EDITOR
 [InitializeOnLoad()]
 public static class LeftGUI
 {
@@ -25,3 +25,4 @@ public static class LeftGUI
         Time.timeScale = value;
     }
 }
+#endif

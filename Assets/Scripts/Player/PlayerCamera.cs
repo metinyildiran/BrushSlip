@@ -1,15 +1,22 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    private GameObject player;
-    private const float offsetY = 2.0f;
+    private Vector3 offset;
+
+    private PlayerController[] controllers;
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-
         SetPerspectiveSize();
+
+        offset = transform.position;
+
+        controllers = FindObjectsOfType<PlayerController>();
+
+        controllers[0].OnDirectionChanged += FollowPlayer;
+        controllers[1].OnDirectionChanged += FollowPlayer;
     }
 
     private void SetPerspectiveSize()
@@ -18,13 +25,13 @@ public class PlayerCamera : MonoBehaviour
         Camera.main.fieldOfView = Mathf.Floor(1920 / currentAspect / 56f);
     }
 
-    private void FollowPlayer()
+    private void FollowPlayer(GameObject o)
     {
-        if (!player) return;
+        transform.DOMove(LastCameraPosition(o), 0.8f).SetEase(Ease.OutSine);
+    }
 
-        Vector3 transform1 = transform.position;
-        transform1.y = player.transform.position.y + offsetY;
-
-        transform.position = transform1;
+    private Vector3 LastCameraPosition(GameObject o)
+    {
+        return o.transform.position + offset;
     }
 }

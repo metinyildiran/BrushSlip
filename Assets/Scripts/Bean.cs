@@ -3,14 +3,22 @@ using UnityEngine;
 
 public class Bean : MonoBehaviour
 {
+    [SerializeField] private GameObject childObject;
+    private Renderer _renderer;
+
+    private void Awake()
+    {
+        _renderer = childObject.GetComponent<Renderer>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(transform.DOShakeScale(0.2f, 0.4f, 1)).onComplete += () =>
-        {
-            transform.DOScale(0.8f, 0.0f);
-        };
+        childObject.transform.DOScale(0.0f, 0.5f);
+    }
 
-
+    private void OnTriggerExit(Collider other)
+    {
+        childObject.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack);
+        _renderer.material.DOColor(Color.red, 0.1f);
     }
 }
