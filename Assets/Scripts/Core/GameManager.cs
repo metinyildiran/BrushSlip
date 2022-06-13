@@ -3,23 +3,37 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : TouchPress
 {
     public static GameManager Instance { get; private set; }
     public int LastFinishedLevel { get; private set; }
+    private bool isGameStarted;
+
+    public Action OnGameStarted;
 
     private void OnGUI()
     {
         ((int)(1 / Time.smoothDeltaTime)).PrintScreen();
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         LoadData();
 
         Instance = this;
 
         Application.targetFrameRate = 60;
+    }
+
+    protected override void OnTouchPressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (isGameStarted) return;
+
+        isGameStarted = true;
+
+        OnGameStarted?.Invoke();
     }
 
     #region Saving and Loading

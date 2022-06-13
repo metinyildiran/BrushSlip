@@ -6,9 +6,13 @@ public class Bean : MonoBehaviour
     [SerializeField] private GameObject childObject;
     private Renderer _renderer;
 
+    private bool isActive;
+
     private void Awake()
     {
         _renderer = childObject.GetComponent<Renderer>();
+
+        GameManager.Instance.OnGameStarted += ActivateBean;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,6 +23,19 @@ public class Bean : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         childObject.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack);
-        _renderer.material.DOColor(Color.red, 0.1f);
+
+        Colorize();
+    }
+
+    private void Colorize()
+    {
+        if (!isActive) return;
+
+        _renderer.material.DOColor(Color.yellow, 0.1f);
+    }
+
+    private void ActivateBean()
+    {
+        isActive = true;
     }
 }
