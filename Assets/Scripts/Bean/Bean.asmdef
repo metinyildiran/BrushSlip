@@ -1,8 +1,9 @@
 {
-    "name": "Editor",
+    "name": "Bean",
     "rootNamespace": "",
     "references": [
-        "GUID:ab8a2a50bcbbcec4284becb7d882d513"
+        "GUID:ab8a2a50bcbbcec4284becb7d882d513",
+        "GUID:75f4b5a413030614196e05df037fe685"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -14,7 +14,10 @@ public class PlayerCamera : MonoBehaviour
         offset = transform.position;
 
         controllers = FindObjectsOfType<PlayerController>();
+    }
 
+    private void Start()
+    {
         controllers[0].OnDirectionChanged += FollowPlayer;
         controllers[1].OnDirectionChanged += FollowPlayer;
     }
