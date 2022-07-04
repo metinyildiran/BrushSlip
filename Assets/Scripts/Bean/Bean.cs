@@ -26,7 +26,7 @@ public class Bean : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        childObject.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack);
+        childObject.transform.DOScale(0.8f, 0.5f).SetEase(Ease.OutBack);
 
         if (!isActive) return;
 
