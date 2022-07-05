@@ -17,7 +17,7 @@ public class GameManager : TouchPress
 
     private void OnGUI()
     {
-        ((int) (1 / Time.smoothDeltaTime)).PrintScreen();
+        ((int) (1 / Time.smoothDeltaTime)).PrintScreen("FPS");
     }
 
     protected override void Awake()

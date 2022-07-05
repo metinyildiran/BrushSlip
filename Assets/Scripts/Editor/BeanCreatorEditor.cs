@@ -10,13 +10,16 @@ public class BeanCreatorEditor : Editor
 {
     BeanCreator beanCreator;
 
+    private void Awake()
+    {
+        beanCreator = (BeanCreator) target;
+    }
+
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        beanCreator = (BeanCreator) target;
-
-        if (GUILayout.Button("SpawnOnPlane"))
+        if (GUILayout.Button("Spawn On Platform"))
         {
             EditorCoroutineUtility.StartCoroutine(beanCreator.SpawnOnPlane(), this);
         }

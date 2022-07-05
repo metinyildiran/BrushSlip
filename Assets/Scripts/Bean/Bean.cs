@@ -21,7 +21,7 @@ public class Bean : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        childObject.transform.DOScale(0.0f, 0.5f);
+        childObject.transform.DOScale(0.0f, 0.38f);
     }
 
     private void OnTriggerExit(Collider other)
