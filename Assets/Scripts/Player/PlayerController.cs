@@ -27,6 +27,20 @@ public class PlayerController : TouchPress
         TurnCylinder();
     }
 
+    private void Update()
+    {
+        if (canTurn) return;
+
+        if (!Physics.CapsuleCast(Vector3.up * 2, Vector3.down * 9, 0.5f, Vector3.up))
+        {
+            gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+        else
+        {
+            gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+        }
+    }
+
     protected override void OnTouchPressed(InputAction.CallbackContext context)
     {
         ToggleTurnDirection();

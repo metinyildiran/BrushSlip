@@ -10,6 +10,14 @@ public class LevelManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            LoadLastRemainingLevel();
+        }
+    }
+
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

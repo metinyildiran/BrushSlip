@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4338800245893895802}
   - component: {fileID: 882430410518907354}
   - component: {fileID: 1910575153142232887}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BeanMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8715056854865474070}
   - component: {fileID: 8715056854865474067}
   - component: {fileID: 2586617583285238044}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bean
   m_TagString: Bean
   m_Icon: {fileID: 0}

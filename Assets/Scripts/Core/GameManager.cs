@@ -9,22 +9,20 @@ public class GameManager : TouchPress
     public static GameManager Instance { get; private set; }
 
     public int LastFinishedLevel { get; private set; }
+
     private int beanCount;
     private bool isGameStarted;
 
     public Action OnGameStarted;
     public Action OnGameFinished;
-
-    private void OnGUI()
-    {
-        ((int) (1 / Time.smoothDeltaTime)).PrintScreen("FPS");
-    }
+    public Action OnGameFailed;
+    public Action<int> OnScoreChanged;
 
     protected override void Awake()
     {
         base.Awake();
 
-        LoadData();
+        StartCoroutine(LoadData());
 
         Instance = this;
 
@@ -54,7 +52,10 @@ public class GameManager : TouchPress
 
         if (beanCount == 0)
         {
-            beanCount.Print("Invoke");
+            OnGameFinished?.Invoke();
+
+            StartCoroutine(SaveData());
+
             OnGameFinished?.Invoke();
         }
 
@@ -69,45 +70,53 @@ public class GameManager : TouchPress
         public int lastFinishedLevel;
     }
 
-    private void SaveData()
+    private IEnumerator SaveData()
     {
-        var data = new Data
+        Data data = new Data
         {
             lastFinishedLevel = SceneManager.GetActiveScene().buildIndex
         };
 
-        var json = JsonUtility.ToJson(data);
+        string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+
+        yield return data;
     }
 
-    private void LoadData()
+    private IEnumerator LoadData()
     {
-        var path = Application.persistentDataPath + "/savefile.json";
+        string path = Application.persistentDataPath + "/savefile.json";
 
         if (File.Exists(path))
         {
-            var json = File.ReadAllText(path);
-            var data = JsonUtility.FromJson<Data>(json);
+            string json = File.ReadAllText(path);
+            Data data = JsonUtility.FromJson<Data>(json);
 
             LastFinishedLevel = data.lastFinishedLevel;
+
+            yield return data;
         }
         else
         {
             LastFinishedLevel = 0;
+
+            yield return null;
         }
     }
 
-    public void ResetData()
+    public IEnumerator ResetData()
     {
-        var data = new Data
+        Data data = new Data
         {
             lastFinishedLevel = 0
         };
 
-        var json = JsonUtility.ToJson(data);
+        string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
 
-        LoadData();
+        StartCoroutine(LoadData());
+
+        yield return data;
     }
     #endregion
 }

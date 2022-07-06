@@ -67,27 +67,13 @@ public class LevelCreator : EditorWindow
         }
     }
 
-    private void SpawnPlatforms(int count = 3)
+    private void SpawnPlatforms()
     {
-        int currentPlatformCount = 0;
+        int number = Random.Range(0, platformReferences.Count - 1);
 
-        Utils.SpawnPrefab(platformReferences[Random.Range(0, platformReferences.Count)]).transform.position = Vector3.up;
+        GameObject platform = Utils.SpawnPrefab(platformReferences[number]);
 
-        while (currentPlatformCount < count - 1)
-        {
-            int number = Random.Range(0, platformReferences.Count);
-
-            Vector3 pos = new Vector3(Mathf.Cos(Random.Range(0, 360)) * 12, 1, Mathf.Sin(Random.Range(0, 360)) * 12);
-            Quaternion rot = Quaternion.Euler(new Vector3(0, Random.Range(0, 3) * 90));
-
-            GameObject platform = Utils.SpawnPrefab(platformReferences[number]);
-
-            // ToDo: Write a proper positioning
-
-            platform.transform.SetPositionAndRotation(pos, rot);
-
-            currentPlatformCount++;
-        }
+        platform.transform.SetPositionAndRotation(Vector3.up, Quaternion.identity);
     }
 
     private int GetSceneCount()
