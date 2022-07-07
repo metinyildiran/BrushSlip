@@ -3,13 +3,21 @@ using UnityEngine;
 
 public class TextBase : MonoBehaviour
 {
-    private TMP_Text tmp_text;
+    protected TMP_Text text;
 
     protected virtual void Awake()
     {
-        tmp_text = GetComponent<TMP_Text>();
+        text = GetComponent<TMP_Text>();
 
-        SetText(tmp_text);
+        SetTextColor();
+
+        SetText(text);
+    }
+
+    protected virtual void SetTextColor()
+    {
+        text.fontSharedMaterial.SetColor(ShaderID.FaceColor, ColorManager.Instance.currentColors.secondaryColor);
+        text.fontSharedMaterial.SetColor(ShaderID.OutlineColor, ColorManager.Instance.currentColors.primaryColor);
     }
 
     protected virtual void SetText(TMP_Text tmp_text) { }

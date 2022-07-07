@@ -12,22 +12,12 @@ public class LevelBar : MonoBehaviour
         fillBarImage = GetComponent<Image>();
     }
 
-    private void Start()
-    {
-        GameManager.Instance.OnScoreChanged += FillUpBar;
-    }
-
     private void FillUpBar(int score)
     {
-        DOTween.To(() => fillAmount, x => fillAmount = x, fillAmount + 0.1f, 0.1f)
+        DOTween.To(() => fillAmount, x => fillAmount = x, fillAmount + 0.1f, duration: 0.1f)
             .OnUpdate(() =>
             {
                 fillBarImage.fillAmount = fillAmount;
             });
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.Instance.OnScoreChanged -= FillUpBar;
     }
 }

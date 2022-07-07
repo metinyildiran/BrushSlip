@@ -52,8 +52,6 @@ public class GameManager : TouchPress
 
         if (beanCount == 0)
         {
-            OnGameFinished?.Invoke();
-
             StartCoroutine(SaveData());
 
             OnGameFinished?.Invoke();

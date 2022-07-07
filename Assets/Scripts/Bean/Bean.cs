@@ -40,7 +40,7 @@ public class Bean : MonoBehaviour
 
     private void Colorize()
     {
-        _renderer.material.DOColor(Color.yellow, 0.1f);
+        _renderer.material.DOColor(ColorManager.Instance.currentColors.secondaryColor, 0.1f);
 
         isColorized = true;
     }

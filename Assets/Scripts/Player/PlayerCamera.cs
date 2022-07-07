@@ -20,11 +20,13 @@ public class PlayerCamera : MonoBehaviour
     {
         controllers[0].OnDirectionChanged += FollowPlayer;
         controllers[1].OnDirectionChanged += FollowPlayer;
+
+        Camera.main.backgroundColor = ColorManager.Instance.currentColors.backgroundColor;
     }
 
     private void SetPerspectiveSize()
     {
-        float currentAspect = (float)Screen.width / (float)Screen.height;
+        float currentAspect = (float) Screen.width / (float) Screen.height;
         Camera.main.fieldOfView = Mathf.Floor(1920 / currentAspect / 56f);
     }
 

@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(ParentConstraint))]
 public class PlayerController : TouchPress
 {
+    [SerializeField] private GameObject exclamationText;
+
     private ParentConstraint parentConstraint;
 
     [SerializeField] private bool canTurn;
     private int turnDirection = 1;
 
     public Action<GameObject> OnDirectionChanged;
+
+    private bool isOutOfPlatform;
 
     protected override void Awake()
     {
@@ -31,19 +36,28 @@ public class PlayerController : TouchPress
     {
         if (canTurn) return;
 
-        if (!Physics.CapsuleCast(Vector3.up * 2, Vector3.down * 9, 0.5f, Vector3.up))
+        if (!Physics.Raycast(transform.position, Vector3.down))
         {
-            gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+            isOutOfPlatform = true;
+            exclamationText.SetActive(true);
         }
         else
         {
-            gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+            isOutOfPlatform = false;
+            exclamationText.SetActive(false);
         }
     }
 
     protected override void OnTouchPressed(InputAction.CallbackContext context)
     {
-        ToggleTurnDirection();
+        if (isOutOfPlatform)
+        {
+            GameManager.Instance.OnGameFailed?.Invoke();
+        }
+        else
+        {
+            ToggleTurnDirection();
+        }
     }
 
     private void ToggleTurnDirection()
@@ -64,11 +78,11 @@ public class PlayerController : TouchPress
 
         if (!canTurn)
         {
-            transform.DOKill(false);
+            transform.DOKill();
             return;
         }
 
-        transform.DOKill(false);
+        transform.DOKill();
 
         transform.DORotate(new Vector3(0, transform.rotation.eulerAngles.y - (360 * turnDirection)), 2f, RotateMode.FastBeyond360)
             .SetEase(Ease.Linear).SetLoops(-1);

@@ -23,21 +23,66 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 5.unity
     guid: aa945947895bf4d4dad395a0ab87ac01
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Level 6.unity
-    guid: f47b9701e9399a0409d9e1e89c959173
-  - enabled: 0
+    guid: c490c804abbaadb48a3fd448752ec06c
+  - enabled: 1
     path: Assets/Scenes/Level 7.unity
-    guid: fa170382be0d6504497b41a420198cc1
-  - enabled: 0
+    guid: 8544f3e0b0aa1a14097103dc498d63a6
+  - enabled: 1
     path: Assets/Scenes/Level 8.unity
-    guid: 516762b527d401e46b270279ca8acf58
-  - enabled: 0
+    guid: 9b1f009a650b22d4eb535b79c3fe3d17
+  - enabled: 1
     path: Assets/Scenes/Level 9.unity
-    guid: 88ec23043cc717b499c3cbda8b4de960
-  - enabled: 0
+    guid: e21eae85737bf6f469d93ef950149527
+  - enabled: 1
     path: Assets/Scenes/Level 10.unity
-    guid: 741cacb3f110e784ba23c68746db7d0e
+    guid: 272408d959df05b4ab596e0c64d06b50
+  - enabled: 1
+    path: Assets/Scenes/Level 11.unity
+    guid: 85037ccc4147c4540acd7634dfdf150c
+  - enabled: 1
+    path: Assets/Scenes/Level 12.unity
+    guid: 883ad9f3806eaa94084fb86a67ee80f3
+  - enabled: 1
+    path: Assets/Scenes/Level 13.unity
+    guid: c14d965b53b86104e9a2561563a77f6f
+  - enabled: 1
+    path: Assets/Scenes/Level 14.unity
+    guid: d4d49e35d9567dd4a88bb9d7a076e5ac
+  - enabled: 1
+    path: Assets/Scenes/Level 15.unity
+    guid: 347bce65bb1997745ab4288bd0f7835a
+  - enabled: 1
+    path: Assets/Scenes/Level 16.unity
+    guid: 7d7695cae7d78294ea7f0af0ece76373
+  - enabled: 1
+    path: Assets/Scenes/Level 17.unity
+    guid: fe9b4509b88555f41ad6b14ca70fc35e
+  - enabled: 1
+    path: Assets/Scenes/Level 18.unity
+    guid: a5174b35c36ae3a489006e3df8c50f66
+  - enabled: 1
+    path: Assets/Scenes/Level 19.unity
+    guid: 42d4739f882d2de4a98fdbed38adb004
+  - enabled: 1
+    path: Assets/Scenes/Level 20.unity
+    guid: b5b9796fd79c7914a8660f6d5977e82a
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 5141d3798e4e12040b15986dd80f9c53,
       type: 2}

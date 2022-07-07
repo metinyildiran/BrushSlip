@@ -1,8 +1,8 @@
 ﻿#if UNITY_EDITOR
 using Unity.EditorCoroutines.Editor;
 using UnityEditor;
-#endif
 using UnityEngine;
+#endif
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(BeanCreator))]
