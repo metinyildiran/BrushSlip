@@ -9,14 +9,15 @@ public class PlayerController : TouchPress
 {
     [SerializeField] private GameObject exclamationText;
 
+    public Action<GameObject> OnDirectionChanged;
+
     private ParentConstraint parentConstraint;
 
     [SerializeField] private bool canTurn;
     private int turnDirection = 1;
-
-    public Action<GameObject> OnDirectionChanged;
-
     private bool isOutOfPlatform;
+    private bool isGameFinished;
+    private bool isGameFailed;
 
     protected override void Awake()
     {
@@ -29,10 +30,18 @@ public class PlayerController : TouchPress
     {
         base.Start();
 
+        GameManager.Instance.OnGameFinished += OnGameFinished;
+        GameManager.Instance.OnGameFailed += OnGameFailed;
+
         TurnCylinder();
     }
 
     private void Update()
+    {
+        CheckIfInSafeZone();
+    }
+
+    private void CheckIfInSafeZone()
     {
         if (canTurn) return;
 
@@ -60,6 +69,20 @@ public class PlayerController : TouchPress
         }
     }
 
+    private void OnGameFinished()
+    {
+        isGameFinished = true;
+
+        transform.DOKill();
+    }
+
+    private void OnGameFailed()
+    {
+        isGameFailed = true;
+
+        transform.DOKill();
+    }
+
     private void ToggleTurnDirection()
     {
         turnDirection *= -1;
@@ -73,10 +96,11 @@ public class PlayerController : TouchPress
 
     private void TurnCylinder()
     {
+        if (isGameFinished || isGameFailed) return;
+
         if (canTurn)
             OnDirectionChanged?.Invoke(gameObject);
-
-        if (!canTurn)
+        else
         {
             transform.DOKill();
             return;

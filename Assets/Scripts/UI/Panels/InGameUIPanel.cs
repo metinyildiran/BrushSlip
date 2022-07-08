@@ -1,8 +1,8 @@
 ﻿using UnityEngine.InputSystem;
 
-public class InGameUIPanel : TouchMove
+public class InGameUIPanel : TouchPress
 {
-    protected override void OnTouchMoved(InputAction.CallbackContext context)
+    protected override void OnTouchPressed(InputAction.CallbackContext context)
     {
         gameObject.SetActive(false);
     }

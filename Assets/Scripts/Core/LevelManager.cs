@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance;
+    public static LevelManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -25,10 +25,11 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (SceneManager.GetActiveScene().buildIndex + 1 >= SceneManager.sceneCountInBuildSettings)
+        bool isLastLevel = SceneManager.GetActiveScene().buildIndex + 1 >= SceneManager.sceneCountInBuildSettings;
+        if (isLastLevel)
         {
             GameManager.Instance.ResetData();
-            SceneManager.LoadScene(GameManager.Instance.LastFinishedLevel + 1);
+            SceneManager.LoadScene(1);
         }
         else
         {
@@ -38,10 +39,11 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLastRemainingLevel()
     {
-        if (GameManager.Instance.LastFinishedLevel + 1 >= SceneManager.sceneCountInBuildSettings)
+        bool isLastLevelFinished = GameManager.Instance.LastFinishedLevel + 1 >= SceneManager.sceneCountInBuildSettings;
+        if (isLastLevelFinished)
         {
             GameManager.Instance.ResetData();
-            SceneManager.LoadScene(GameManager.Instance.LastFinishedLevel + 1);
+            SceneManager.LoadScene(1);
         }
         else
         {

@@ -9,7 +9,7 @@ public class GameManager : TouchPress
     public static GameManager Instance { get; private set; }
 
     public int LastFinishedLevel { get; private set; }
-
+    public bool IsGameFinished { get; private set; }
     private int beanCount;
     private bool isGameStarted;
 
@@ -53,6 +53,8 @@ public class GameManager : TouchPress
         if (beanCount == 0)
         {
             StartCoroutine(SaveData());
+
+            IsGameFinished = true;
 
             OnGameFinished?.Invoke();
         }

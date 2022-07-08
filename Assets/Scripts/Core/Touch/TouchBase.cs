@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class TouchBase : MonoBehaviour
+public class TouchBase : MonoBehaviour
 {
     protected TouchControls touchControls;
 

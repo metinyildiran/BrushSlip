@@ -4,6 +4,9 @@ public class FailedGameUIPanel : TouchPress
 {
     protected override void OnTouchPressed(InputAction.CallbackContext context)
     {
-        LevelManager.Instance.RestartLevel();
+        if (!GameManager.Instance.IsGameFinished)
+        {
+            LevelManager.Instance.RestartLevel();
+        }
     }
 }
