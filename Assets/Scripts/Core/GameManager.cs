@@ -29,7 +29,9 @@ public class GameManager : TouchPress
         beanCount = GameObject.FindGameObjectsWithTag("Bean").Length;
 
         Application.targetFrameRate = 60;
+#if !UNITY_WEBGL
         Screen.SetResolution(720, 1280, false);
+#endif
     }
 
     protected override void OnTouchPressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
