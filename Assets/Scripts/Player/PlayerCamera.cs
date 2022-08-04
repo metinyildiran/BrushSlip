@@ -21,6 +21,8 @@ public class PlayerCamera : MonoBehaviour
         controllers[0].OnDirectionChanged += FollowPlayer;
         controllers[1].OnDirectionChanged += FollowPlayer;
 
+        GameManager.Instance.OnGameFinished += SetCameraAway;
+
         Camera.main.backgroundColor = ColorManager.Instance.currentColors.backgroundColor;
     }
 
@@ -33,6 +35,11 @@ public class PlayerCamera : MonoBehaviour
     private void FollowPlayer(GameObject o)
     {
         transform.DOMove(LastCameraPosition(o), 0.8f).SetEase(Ease.OutSine);
+    }
+
+    private void SetCameraAway()
+    {
+        transform.DOMove(new Vector3(0, 36, -18), 1).SetEase(Ease.OutSine);
     }
 
     private Vector3 LastCameraPosition(GameObject o)

@@ -30,7 +30,8 @@ public class UIManager : MonoBehaviour
 
     private void ShowFailedGameUI()
     {
-        failedGameUI.SetActive(true);
+        if (!GameManager.Instance.IsGameFinished)
+            failedGameUI.SetActive(true);
     }
 
     private void ShowFinishedGameUI()
